@@ -12,7 +12,7 @@ function connector!(connection,p1, p2, color)
     map(x->line(x[1],x[2], :stroke),connection)
 end
 
-function ground(args...) 
+function ground(args...)
     background("black") # canvas background
     sethue("white") # pen color
     # circle(O,50,:fill)
@@ -28,21 +28,21 @@ function make_animation()
 
     # to store the connectors
     connection = []
-    
+
     frames = 1000
 
     # setup the video
-    myvideo = Video(900,900)
+    myvideo = Video(500,500)
     Background(1:frames,ground)
 
     # add the objects
-    earth = Object(1:frames,(args...)->object(5,O,"blue"),Point(400,0))
-    venus = Object(1:frames,(args...)->object(4,O,"red"),Point(288,0))
+    earth = Object(1:frames,(args...)->object(5,O,"blue"),Point(200,0))
+    venus = Object(1:frames,(args...)->object(4,O,"red"),Point(144,0))
     #sun = Object(1:frames,(aegs...)->object(50,O,"yellow"),Point(0,0))
 
     # draw the orbits
-    earth_orbit = Object((args...) -> circ(O, "white", :stroke, 400))
-    venus_orbit = Object((args...) -> circ(O, "white", :stroke, 288))
+    earth_orbit = Object((args...) -> circ(O, "white", :stroke, 200))
+    venus_orbit = Object((args...) -> circ(O, "white", :stroke, 144))
 
     # move the planets
     act!(earth, Action(anim_rotate_around(12.5*2π, O)))
@@ -52,7 +52,8 @@ function make_animation()
     Object(1:frames, (args...)->connector!(connection,pos(earth), pos(venus), "#f05a4f"))
 
     # render
-    render(myvideo,pathname = "cosmic_dance.gif",framerate = 60)
+    render(myvideo,pathname = "cosmic_dance.gif")
 end
 
 make_animation()
+
