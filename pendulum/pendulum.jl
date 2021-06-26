@@ -15,6 +15,9 @@ function simplependulum(du,u,p,t)
     θ = u[1]
     dθ = u[2]
     du[1] = dθ
+    # to change the damping change the number that multiplies `dθ` to
+    # 0.5 for heavy damping
+    # 0.05 for light damping
     du[2] = -0.0 * dθ -(g/L) * sin(θ)
 end
 
